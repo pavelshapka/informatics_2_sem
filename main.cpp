@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 using namespace std;
 
 class figure {
@@ -195,25 +195,58 @@ public:
     double get_ex() override {
         return 0;
     }
-
 private:
     double r;
 };
 int main() {
-    parallelogram pl(3, 3, 90);
-    cout << pl.get_S() << ' ' << pl.get_n() << ' ' << pl.get_R() << ' ' << pl.get_r() << endl;
-    circle cr(5);
-    cout << cr.get_S() << cr.get_ex() << endl;
-    ellipse el(5, 10);
-    cout << el.get_ex() << ' ' << el.get_S() << endl;
-    correct_polygons pol1(1, 4);
-    cout << pol1.get_r() << ' ' << pol1.get_R() << ' ' << pol1.get_S() << ' ' <<  pol1.get_n() << endl;
-    trapeze tr(6, 4, 2, 60);
-    cout << tr.get_n() << ' ' << tr.get_S() << ' ' << tr.get_r() << ' ' << tr.get_R() << endl;
-    correct_triangle tri(5);
-    cout << tri.get_S() << ' ' << tri.get_R() << ' ' << tri.get_r() << endl;
-    square sq(1);
-    cout << sq.get_S() << ' ' << sq.get_r() << ' ' << sq.get_R();
+
+    cout << "Circle Methods" << endl;
+    ellipse* objE = new circle(1.0);
+    cout << "S = " << objE -> get_S() << endl;
+    cout << "Ext = " << objE -> get_ex() << endl;
+
+    cout << endl;
+
+    cout << "Elips Methods" << endl;
+    objE = new ellipse(10, 90);
+    cout << "S = " << objE -> get_S() << endl;
+    cout << "Ext = " << objE -> get_ex() << endl;
+
+    cout << endl;
+
+    cout << "Parallelogram Methods" << endl;
+    polygons* objP = new parallelogram(1, 1, M_PI / 2);
+    cout << "S = " << objP -> get_S() << endl;
+    cout << "R = " << objP -> get_R() << endl;
+    cout << "r = " << objP -> get_r() << endl;
+    cout << "n = " << objP -> get_n() << endl;
+
+    cout << endl;
+
+    cout << "Trapeze Methods" << endl;
+    objP = new trapeze(17, 10, 5, atan(4 / 3));
+    cout << "S = " << objP -> get_S() << endl;
+    cout << "R = " << objP -> get_R() << endl;
+    cout << "r = " << objP -> get_r() << endl;
+    cout << "n = " << objP -> get_n() << endl;
+
+    cout << endl;
+
+    cout << "Correct triangle Methods" << endl;
+    objP = new correct_triangle(5);
+    cout << "S = " << objP -> get_S() << endl;
+    cout << "R = " << objP -> get_R() << endl;
+    cout << "r = " << objP -> get_r() << endl;
+    cout << "n = " << objP -> get_n() << endl;
+
+    cout << endl;
+
+    cout << "Square Methods" << endl;
+    objP = new square(5);
+    cout << "S = " << objP -> get_S() << endl;
+    cout << "R = " << objP -> get_R() << endl;
+    cout << "r = " << objP -> get_r() << endl;
+    cout << "n = " << objP -> get_n() << endl;
 
 return 0;
 };
