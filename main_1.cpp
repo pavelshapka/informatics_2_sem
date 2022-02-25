@@ -1,6 +1,11 @@
 #include <iostream>
 #include <math.h>
+<<<<<<< HEAD
 //#include <SFML/Graphics.hpp>
+=======
+#include "Figures.cpp"
+
+>>>>>>> 6e1607214bfab4f66a28ada624b092bfb418c474
 using namespace std;
 
 class figure {
@@ -168,7 +173,10 @@ protected:
 
 class ellipse : public figure {
 public:
+<<<<<<< HEAD
     ellipse() {};
+=======
+>>>>>>> 6e1607214bfab4f66a28ada624b092bfb418c474
     ellipse(double A, double B) {
         a = A;
         b = B;
@@ -177,17 +185,30 @@ public:
     double get_S() override {
         return M_PI * a * b;
     }
+<<<<<<< HEAD
     virtual double get_ex() {
         return sqrt(1 - pow(a/b,2));
+=======
+    pair<double,double> const getRadii(){
+        return make_pair(a, b);
+    }
+    double get_ex() {
+        return sqrt(1 - pow(b/a,2));
+>>>>>>> 6e1607214bfab4f66a28ada624b092bfb418c474
     }
 protected:
     double a, b;
 };
 
 class circle : public ellipse {
+<<<<<<< HEAD
 public:
     circle(double r) {
         this->r = r;
+=======
+    double gerRadius(){
+        return r;
+>>>>>>> 6e1607214bfab4f66a28ada624b092bfb418c474
     }
     double get_S() override {
         return M_PI * pow(r, 2);
@@ -198,8 +219,8 @@ public:
 private:
     double r;
 };
-int main() {
 
+<<<<<<< HEAD
     cout << "Circle Methods" << endl;
     ellipse* objE = new circle(1.0);
     cout << "S = " << objE -> get_S() << endl;
@@ -250,3 +271,76 @@ int main() {
 
 return 0;
 };
+=======
+void drawbackground(PPM *ppm1){
+    for(int i = 0; i < 500; i++)
+        for(int j = 0; j < 500; j++) {
+            ppm1->image[i][j].r = 18;
+            ppm1->image[i][j].g = 49;
+            ppm1->image[i][j].b = 102;
+        }
+}
+
+// void drawdisk(PPM *ppm1, circle radius){
+//     for(int i = 250 - radius.getRadius(); i < 250 + radius.getRadius(); i++)
+//         for(int j = 250 - radius.getRadius(); j < 250 + radius.getRadius(); j++) {
+//             if (sqrt(pow((i - 250)/(radius.getRadius()), 2) + pow((j - 250)/(radius.getRadius()), 2)) < 1) {
+//                 ppm1->image[i][j].r = 186;
+//                 ppm1->image[i][j].g = 203;
+//                 ppm1->image[i][j].b = 239;
+//             }
+//         }
+// }
+
+void drawsquare(PPM *ppm1, double length){
+    for(int i = 250 - 5 * length; i < 250 + 5 * length; i++)
+       for(int j = 250 - 5 * length; j < 250 + 5 * length; j++) {
+           ppm1->image[i][j].r = 186;
+           ppm1->image[i][j].g = 203;
+           ppm1->image[i][j].b = 239;
+       }
+}
+
+void drawellipse(PPM *ppm1, ellipse radius){
+    for(int i = 250 - radius.getRadii().first; i < 250 + radius.getRadii().first; i++)
+        for(int j = 250 - radius.getRadii().first; j < 250 + radius.getRadii().first; j++) {
+            if (sqrt(pow((i - 250)/(radius.getRadii().first), 2) + pow((j - 250)/(radius.getRadii().second), 2)) < 1) {
+                ppm1->image[i][j].r = 186;
+                ppm1->image[i][j].g = 203;
+                ppm1->image[i][j].b = 239;
+            }
+        }
+}
+
+// void trapeze(PPM *ppm1){
+//     for(int i = 200; i < 300; i++)
+//        for(int j = 200; j < 300; j++) {
+//            ppm1->image[i][j].r = 186;
+//            ppm1->image[i][j].g = 203;
+//            ppm1->image[i][j].b = 239;
+//        }
+// }
+
+void drawparallelogram(PPM *ppm1, double length){
+    for(int i = 250 - 5 * length; i < 250 + 5 * length; i++)
+       for(int j = 250 - 5 * length; j < 250 + 5 * length; j++) {
+           ppm1->image[(int) (i + 0.2 * j)][j].r = 186;
+           ppm1->image[(int) (i+ 0.2 * j)][j].g = 203;
+           ppm1->image[(int) (i+ 0.2 * j)][j].b = 239;
+       }
+}
+
+int main(){
+
+    PPM ppm1 (500, 500);
+    drawbackground(&ppm1); //отрисовка фона
+
+    // drawsquare(&ppm1, 10);  //отрисовка квадрата
+    // drawparallelogram(&ppm1, 10); //отрисовка параллелограмма
+
+    ellipse radius (100, 50); 
+    drawellipse(&ppm1,radius);  //отрисовка круга/эллипса
+
+    ppm1.save("Result.ppm");
+}
+>>>>>>> 6e1607214bfab4f66a28ada624b092bfb418c474
